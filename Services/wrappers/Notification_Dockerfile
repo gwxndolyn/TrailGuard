@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY notification_requirements.txt .
+RUN pip install --no-cache-dir -r notification_requirements.txt
+
+COPY Notification_Wrapper.py .
+
+ENV PORT=5000
+EXPOSE 5000
+
+CMD ["python", "Notification_Wrapper.py"]

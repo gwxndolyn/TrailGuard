@@ -12,14 +12,16 @@ const lbl   = "block text-[0.82rem] font-semibold tracking-[0.04em] text-fg mb-1
 const icon  = "text-muted shrink-0";
 
 export default function IncidentReportForm({ onSubmit, loading, severity, photoUrl }) {
-  const [trailId,      setTrailId]      = useState("");
-  const [injuryType,   setInjuryType]   = useState("");
-  const [locationDesc, setLocationDesc] = useState("");
-  const [description,  setDescription]  = useState("");
+  const [trailId,        setTrailId]        = useState("");
+  const [injuryType,     setInjuryType]     = useState("");
+  const [locationDesc,   setLocationDesc]   = useState("");
+  const [description,    setDescription]    = useState("");
+  const [contactName,    setContactName]    = useState("");
+  const [contactPhone,   setContactPhone]   = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit?.({ trailId: trailId || "unknown", severity, injuryType, description, location: { description: locationDesc }, photoUrl });
+    onSubmit?.({ trailId: trailId || "unknown", severity, injuryType, description, location: { description: locationDesc }, photoUrl, contactName, contactPhone });
   }
 
   return (
@@ -73,6 +75,28 @@ export default function IncidentReportForm({ onSubmit, loading, severity, photoU
           rows={3}
           className="w-full bg-surface border border-line rounded-xl px-4 py-3 text-fg text-[0.92rem] font-[inherit] outline-none resize-y transition-colors focus:border-primary"
         />
+      </div>
+
+      <div className="mb-4">
+        <label className={lbl}>Emergency Contact</label>
+        <div className="flex gap-2">
+          <div className={`${wrap} flex-1`}>
+            <input type="text" placeholder="Contact name" value={contactName} onChange={e => setContactName(e.target.value)} className={input} />
+          </div>
+          <div className={`${wrap} flex-1`}>
+            <input
+              type="tel"
+              placeholder="+65xxxxxxxx"
+              value={contactPhone}
+              onChange={e => {
+                let v = e.target.value.trim();
+                if (v && !v.startsWith("+")) v = "+65" + v;
+                setContactPhone(v);
+              }}
+              className={input}
+            />
+          </div>
+        </div>
       </div>
 
       <button

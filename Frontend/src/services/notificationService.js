@@ -1,4 +1,4 @@
-import { API_BASE } from "../config/constants.js";
+import { NOTIFICATION_WRAPPER_URL } from "../config/constants.js";
 
 /**
  * POST /notify
@@ -13,7 +13,7 @@ import { API_BASE } from "../config/constants.js";
  * }} data
  */
 export async function sendEmergencyNotifications(data) {
-  const res = await fetch(`${API_BASE}/notify`, {
+  const res = await fetch(`${NOTIFICATION_WRAPPER_URL}/notify`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -35,7 +35,7 @@ export async function sendEmergencyNotifications(data) {
  * }} data
  */
 export async function broadcastTrailAlert(data) {
-  const res = await fetch(`${API_BASE}/broadcast`, {
+  const res = await fetch(`${NOTIFICATION_WRAPPER_URL}/broadcast`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),

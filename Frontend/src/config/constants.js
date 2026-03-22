@@ -1,4 +1,5 @@
 export const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
+export const NOTIFICATION_WRAPPER_URL = import.meta.env.VITE_NOTIFICATION_WRAPPER_URL ?? "http://localhost:5050";
 
 export const SEVERITY_LEVELS = [
   { value: 1, label: "Minor",    description: "Small cuts, bruises, no mobility loss" },

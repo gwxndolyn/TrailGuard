@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  notification-wrapper:
+    build:
+      context: .
+      dockerfile: Notification_Dockerfile
+    env_file:
+      - notification.env
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
